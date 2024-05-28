@@ -1,5 +1,3 @@
-import "dart:ui";
-
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:xpns/utils/palette.dart";
@@ -16,31 +14,62 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        flexibleSpace: ClipRRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Container(
-              color: Colors.transparent,
-            ),
-          ),
-        ),
-        title: Text(
-          'XPNS',
-          style: GoogleFonts.lato(
-            fontSize: 25,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white.withAlpha(100),
-        elevation: 0,
-      ),
+      // appBar: AppBar(
+      //   flexibleSpace: ClipRRect(
+      //     child: BackdropFilter(
+      //       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+      //       child: Container(
+      //         color: Colors.transparent,
+      //       ),
+      //     ),
+      //   ),
+      //   title: Text(
+      //     'XPNS',
+      //     style: GoogleFonts.lato(
+      //       fontSize: 25,
+      //       fontWeight: FontWeight.w600,
+      //       color: Colors.black,
+      //     ),
+      //   ),
+      //   centerTitle: true,
+      //   backgroundColor: Colors.white.withAlpha(100),
+      //   elevation: 0,
+      // ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                12,
+                kToolbarHeight,
+                12,
+                30,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'XPNS',
+                    style: GoogleFonts.lato(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
+                  CircleAvatar(
+                    radius: 22,
+                    backgroundColor: Colors.grey[200],
+                    child: Image.asset(
+                      "assets/imgs/profile.png",
+                      fit: BoxFit.cover,
+                      width: 30,
+                    ),
+                  )
+                ],
+              ),
+            ),
             Center(
               child: Container(
                 padding: const EdgeInsets.symmetric(
@@ -63,7 +92,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: 60,
+                      width: 55,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: const [
@@ -77,12 +106,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                       child: Image.asset(
                         "assets/imgs/eth.png",
-                        scale: 65,
+                        scale: 75,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 14),
                     Text(
-                      "0.011",
+                      "10.15",
                       style: GoogleFonts.oswald(
                         fontSize: 50,
                         fontWeight: FontWeight.w600,
@@ -92,7 +121,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       " ETH",
                       style: GoogleFonts.oswald(
                         fontSize: 40,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
@@ -109,7 +138,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),
                         bottomLeft: Radius.circular(20),
-                        topRight: Radius.circular(10),
+                        topRight: Radius.circular(4),
                         bottomRight: Radius.circular(20),
                       ),
                       boxShadow: [
@@ -148,7 +177,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     height: 55,
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
+                        topLeft: Radius.circular(4),
                         bottomLeft: Radius.circular(20),
                         topRight: Radius.circular(20),
                         bottomRight: Radius.circular(20),
@@ -182,6 +211,71 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ),
               ],
+            ),
+            const SizedBox(height: 20),
+            Text(
+              "Transactions",
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Expanded(
+              child: ListView(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 12,
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color.fromRGBO(52, 63, 86, .2),
+                            blurRadius: 20,
+                            offset: Offset(0, 10),
+                          )
+                        ],
+                        color: Colors.white),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              "assets/imgs/eth.png",
+                              width: 25,
+                            ),
+                            const SizedBox(width: 6),
+                            Text(
+                              "2.01 ETH",
+                              style: GoogleFonts.oswald(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          "0xBC3CeF3a50aA407cf23D100886FA43959252a31D",
+                          style: GoogleFonts.dmSans(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          "XYZ Purchase",
+                          style: GoogleFonts.dmSans(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             )
           ],
         ),
