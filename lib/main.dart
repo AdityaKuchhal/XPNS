@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:xpns/components/dashboard/ui/dashboard_screen.dart';
+import 'package:xpns/components/deposit/deposit.dart';
+import 'package:xpns/components/withdraw/withdraw.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,7 +11,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -20,7 +21,12 @@ class MyApp extends StatelessWidget {
     ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DashboardScreen(),
+      initialRoute: DashboardScreen.id,
+      routes: {
+        DashboardScreen.id: (context) => const DashboardScreen(),
+        DepositScreen.id: (context) => const DepositScreen(),
+        WithdrawScreen.id: (context) => const WithdrawScreen(),
+      },
     );
   }
 }

@@ -1,8 +1,11 @@
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
+import "package:xpns/components/deposit/deposit.dart";
+import "package:xpns/components/withdraw/withdraw.dart";
 import "package:xpns/utils/palette.dart";
 
 class DashboardScreen extends StatefulWidget {
+  static const String id = 'DashboardScreen';
   const DashboardScreen({super.key});
 
   @override
@@ -45,13 +48,29 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 12,
                 kToolbarHeight,
                 12,
+                0,
+              ),
+              child: Text(
+                'XPNS',
+                style: GoogleFonts.lato(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                12,
+                10,
+                12,
                 30,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'XPNS',
+                    'Welcome, User!',
                     style: GoogleFonts.lato(
                       fontSize: 25,
                       fontWeight: FontWeight.w600,
@@ -132,40 +151,45 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Row(
               children: [
                 Expanded(
-                  child: Container(
-                    height: 55,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
-                        topRight: Radius.circular(4),
-                        bottomRight: Radius.circular(20),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, WithdrawScreen.id);
+                    },
+                    child: Container(
+                      height: 55,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                          topRight: Radius.circular(4),
+                          bottomRight: Radius.circular(20),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color.fromRGBO(52, 63, 86, .2),
+                            blurRadius: 20,
+                            offset: Offset(0, 10),
+                          )
+                        ],
+                        color: kRedAccent,
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(52, 63, 86, .2),
-                          blurRadius: 20,
-                          offset: Offset(0, 10),
-                        )
-                      ],
-                      color: kRedAccent,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.remove,
-                          color: Colors.red,
-                        ),
-                        Text(
-                          " Withdraw",
-                          style: GoogleFonts.lato(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.remove,
                             color: Colors.red,
-                            fontSize: 24,
-                            fontWeight: FontWeight.w600,
                           ),
-                        ),
-                      ],
+                          Text(
+                            " Withdraw",
+                            style: GoogleFonts.lato(
+                              color: Colors.red,
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -173,40 +197,45 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   width: 20,
                 ),
                 Expanded(
-                  child: Container(
-                    height: 55,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(4),
-                        bottomLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                        bottomRight: Radius.circular(20),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, DepositScreen.id);
+                    },
+                    child: Container(
+                      height: 55,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(4),
+                          bottomLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color.fromRGBO(52, 63, 86, .2),
+                            blurRadius: 20,
+                            offset: Offset(0, 10),
+                          )
+                        ],
+                        color: kGreenAccent,
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(52, 63, 86, .2),
-                          blurRadius: 20,
-                          offset: Offset(0, 10),
-                        )
-                      ],
-                      color: kGreenAccent,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.add,
-                          color: Colors.green,
-                        ),
-                        Text(
-                          " Deposit",
-                          style: GoogleFonts.lato(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.add,
                             color: Colors.green,
-                            fontSize: 24,
-                            fontWeight: FontWeight.w600,
                           ),
-                        ),
-                      ],
+                          Text(
+                            " Deposit",
+                            style: GoogleFonts.lato(
+                              color: Colors.green,
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -220,8 +249,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 fontWeight: FontWeight.w600,
               ),
             ),
+            const SizedBox(height: 10),
             Expanded(
               child: ListView(
+                padding: EdgeInsets.zero,
                 children: [
                   Container(
                     padding: const EdgeInsets.symmetric(
@@ -229,15 +260,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       horizontal: 12,
                     ),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color.fromRGBO(52, 63, 86, .2),
-                            blurRadius: 20,
-                            offset: Offset(0, 10),
-                          )
-                        ],
-                        color: Colors.white),
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color.fromRGBO(52, 63, 86, .2),
+                          blurRadius: 20,
+                          offset: Offset(0, 10),
+                        )
+                      ],
+                      color: Colors.white,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
