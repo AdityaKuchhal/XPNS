@@ -151,7 +151,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Row(
               children: [
                 Expanded(
-                  child: InkWell(
+                  child: GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, WithdrawScreen.id);
                     },
@@ -197,7 +197,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   width: 20,
                 ),
                 Expanded(
-                  child: InkWell(
+                  child: GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, DepositScreen.id);
                     },
